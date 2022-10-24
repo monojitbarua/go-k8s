@@ -9,6 +9,6 @@
 
 * To install and run, please execute below command with kubnestes cluster connection setup
 
- - This will create the deployment: kubectl apply -f k8s-deployment.yaml
- - This will create the service: kubectl apply -f k8s-service.yaml
- - If you have minikube cluster then excute this command to get the application url: minikube service go-hello-world-service --url
+ - This will create the deployment: <b>kubectl apply -f k8s-deployment.yaml</b>
+ - This will create the service: <b>kubectl apply -f k8s-service.yaml</b>
+ - If you have minikube cluster then excute this command to get the application url: <b>minikube service go-hello-world-service --url</b>
