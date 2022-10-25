@@ -15,8 +15,8 @@ spec:
     spec:                        
       containers:
       - name: go-k8s
-        image: monojit2012/go-k8s:1.0.0
-        imagePullPolicy: IfNotPresent
+        image: monojit2012/go-k8s:2.0.0
+        imagePullPolicy: Always
         ports:
           - containerPort: 4040
         resources:
@@ -40,4 +40,12 @@ spec:
             port: 4040
             scheme: HTTP
           initialDelaySeconds: 5
-          timeoutSeconds: 5    
+          timeoutSeconds: 5
+            
+        volumeMounts:
+          - mountPath: /log
+            name: log-volume
+      volumes:
+        - name: log-volume
+          emptyDir: {}    
+            

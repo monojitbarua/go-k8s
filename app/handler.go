@@ -3,8 +3,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
+
+	"github.com/monojitbarua/go-util-lib/zlogger"
 )
 
 type Customer struct {
@@ -20,11 +21,13 @@ var customers = []Customer{
 
 // healthcheck handler for k8s
 func HealthHandler(w http.ResponseWriter, r *http.Request) {
+	zlogger.Info("Healthcheck calling")
 	w.WriteHeader(http.StatusOK)
 }
 
 // readiness prob handler for k8s
 func ReadinessHandler(w http.ResponseWriter, r *http.Request) {
+	zlogger.Info("Readiness calling")
 	w.WriteHeader(http.StatusOK)
 }
 
@@ -35,12 +38,14 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	if name == "" {
 		name = "Guest"
 	}
-	log.Printf("Received request for %s\n", name)
+	zlogger.Info(fmt.Sprintf("Received request for %s\n", name))
+
 	w.Write([]byte(fmt.Sprintf("Hello, %s\n", name)))
 }
 
 // get all list of customer handler
 func GetCustomersHandler(w http.ResponseWriter, r *http.Request) {
+	zlogger.Info(fmt.Sprintf("Get customers calling, number of customer: %d", len(customers)))
 	w.Header().Add("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(customers)
 }

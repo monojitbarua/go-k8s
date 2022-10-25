@@ -3,10 +3,8 @@
 # Start from the latest golang base image
 FROM golang:latest as builder
 
-# Add Maintainer Info
-LABEL maintainer="monojitbarua"
-
 # Set the Current Working Directory inside the container
+RUN mkdir -p /log
 WORKDIR /app
 
 # Copy go mod and sum files
